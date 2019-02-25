@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#LOGIN_REDIRECT_URL = '/reviews/'
+#REGISTRATION_REDIRECT_URL = '/reviews/'
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
 # Application definition
 
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Reviews',
+    'registration',
 ]
 
 MIDDLEWARE = [
