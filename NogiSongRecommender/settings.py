@@ -27,8 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-#LOGIN_REDIRECT_URL = '/reviews/'
-#REGISTRATION_REDIRECT_URL = '/reviews/'
+LOGIN_REDIRECT_URL = '/reviews/'
+#SIMPLE_BACKEND_REDIRECT_URL = '/reviews/'
+SIMPLE_BACKEND_REDIRECT_URL = '/accounts/register/complete'
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 

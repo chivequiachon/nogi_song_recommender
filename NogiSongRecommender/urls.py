@@ -20,8 +20,6 @@ from django.conf.urls import url, include
 urlpatterns = [
     url(r'^reviews/', include(('Reviews.urls', 'song_reviews'), namespace="song_reviews")),
     path('admin/', admin.site.urls),
-    #url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^accounts/', include('registration.backends.default.urls')),
-    #url(r'^accounts/register/$', RegistrationView.as_view(), name='registration'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^accounts/', include(('django.contrib.auth.urls', 'auth'), namespace="auth")),
 ]
