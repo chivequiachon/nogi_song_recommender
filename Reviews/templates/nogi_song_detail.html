@@ -2,14 +2,13 @@
 
 {% block content %}
 <h2>{{ nogi_song.romaji_title }} ({{ nogi_song.kanji_title }})</h2>
-<h5>{{ nogi_song.review_set.count }} reviews ({{ nogi_song.average_rating | floatformat }} average rating)</h5>
-{% endblock %}
+<h5>{{ nogi_song.songreview_set.count }} reviews ({{ nogi_song.average_rating | floatformat }} average rating)</h5>
 
 <h3>Recent reviews</h3>
 
-{% if nogi_song.review_set.all %}
+{% if nogi_song.songreview_set.all %}
 <div class="row">
-    {% for review in nogi_song.review_set.all %}
+    {% for review in nogi_song.songreview_set.all %}
     <div class="col-xs-6 col-lg-4">
         <em>{{ review.comment }}</em>
         <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
@@ -26,7 +25,7 @@
 <h3>Add your review</h3>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'song_reviews:add_review' song.id %}" method="post" class="form">
+<form action="{% url 'song_reviews:add_review' nogi_song.id %}" method="post" class="form">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>

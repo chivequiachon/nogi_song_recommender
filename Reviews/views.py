@@ -1,8 +1,14 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 from django.contrib.auth.decorators import login_required
 
 from .models import NogizakaSong, SongReview
 from .forms import SongReviewForm
+
+import datetime
+
 
 def song_review_list(request):
     latest_reviews = SongReview.objects.order_by('-publish_date')[:9]
@@ -20,7 +26,8 @@ def nogi_song_list(request):
 
 def nogi_song_detail(request, nogi_song_id):
     nogi_song_detail = get_object_or_404(NogizakaSong, pk=nogi_song_id)
-    return render(request, 'nogi_song_detail.html', {'nogi_song': nogi_song_detail})
+    form = SongReviewForm()
+    return render(request, 'nogi_song_detail.html', {'nogi_song': nogi_song_detail, 'form': form})
 
 def user_review_list(request, username=None):
     if not username:
@@ -33,20 +40,19 @@ def user_review_list(request, username=None):
 
 @login_required
 def add_review(request, nogi_song_id):
-    song = get_object_or_404(Wine, pk=nogi_song_id)
+    song = get_object_or_404(NogizakaSong, pk=nogi_song_id)
     form = SongReviewForm(request.POST)
 
     if form.is_valid():
         rating = form.cleaned_data['rating']
         comment = form.cleaned_data['comment']
-        user_name = form.cleaned_data['user_name']
         user_name = request.user.username
         review = SongReview()
         review.song = song
         review.user_name = user_name
         review.comment = comment
         review.rating = rating
-        review.pub_date = datetime.datetime.now()
+        review.publish_date = datetime.datetime.now()
         review.save()
 
         #update_clusters()

@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+import numpy as np
+
 class NogizakaSong(models.Model):
     romaji_title = models.CharField(max_length=50)
     kanji_title = models.CharField(max_length=50)
 
     def average_rating(self):
-        all_ratings = list(map(lambda x: x.rating, self.review_set.all()))
+        all_ratings = list(map(lambda x: x.rating, self.songreview_set.all()))
         return np.mean(all_ratings)
 
     def __str__(self):

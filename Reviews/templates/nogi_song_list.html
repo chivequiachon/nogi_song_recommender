@@ -4,8 +4,8 @@
 <h2>Nogizaka Song List</h2>
 {% if nogi_songs %}
     {% for song in nogi_songs %}
-        <h5><a href="{% url 'song_reviews:nogi_song_detail' song.id %}">{{ song.romaji_title }} ({{ song.kanji_title }})</h5>
-        <p>{{ song.review_set.count }} reviews</p>
+        <h5><a href="{% url 'song_reviews:nogi_song_detail' song.id %}">{{ song.romaji_title }} ({{ song.kanji_title }})</a></h5>
+        <p>{{ song.songreview_set.count }} reviews</p>
         <p>{{ song.average_rating | floatformat }}</p>
     {% endfor %}
 {% else %}
