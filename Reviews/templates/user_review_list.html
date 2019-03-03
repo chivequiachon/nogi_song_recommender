@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}
+{% block content %}
 <h2>Reviews by {{ username }}</h2>
 {% for review in latest_reviews %}
     <h5><a href="{% url 'song_reviews:nogi_song_detail' review.song.id %}">{{ review.song.romaji_title }} ({{ review.song.kanji_title }})</a></h5>

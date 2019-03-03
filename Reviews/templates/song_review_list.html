@@ -4,8 +4,8 @@
 <h2>Song Review List</h2>
 {% if latest_reviews %}
     {% for review in latest_reviews %}
-    <h5><a href="{% url 'song_reviews:song_review_detail' review.id %}">{{ review.song.romaji_title }} ({{ review.song.kanji_title }})</h5>
-    <p>{{ review.rating }} out of 5 by <a href="{% url 'song_reviews:user_review_list' review.user_name %}">{{ review.user_name }}</p>
+    <h5><a href="{% url 'song_reviews:nogi_song_detail' review.song.id %}">{{ review.song.romaji_title }} ({{ review.song.kanji_title }})</a></h5>
+    <p>{{ review.rating }} out of 5 by <a href="{% url 'song_reviews:user_review_list' review.user_name %}">{{ review.user_name }}</a></p>
     <p>Comment: {{ review.comment }}</p></br>
     {% endfor %}
 {% endif %}

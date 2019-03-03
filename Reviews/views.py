@@ -11,7 +11,7 @@ import datetime
 
 
 def song_review_list(request):
-    latest_reviews = SongReview.objects.order_by('-publish_date')[:9]
+    latest_reviews = SongReview.objects.order_by('-publish_date')
     context = {'latest_reviews': latest_reviews}
     return render(request, 'song_review_list.html', context)
 
